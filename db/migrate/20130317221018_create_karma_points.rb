@@ -5,6 +5,8 @@ class CreateKarmaPoints < ActiveRecord::Migration
       t.integer :value,   :null => false
       t.string  :label,   :null => false
 
+      t.index(:user_id)
+
       t.timestamps
     end
   end

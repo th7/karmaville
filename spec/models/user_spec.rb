@@ -48,4 +48,14 @@ describe User do
       user.full_name.should eq 'John Doe'
     end
   end
+
+  describe '#update_total_karma' do
+    let(:user) {build(:user_with_karma, total: 500, points: 5)}
+
+    it 'sums values from associated karma_points and saves in total_karma' do
+      user.should_receive (:save)
+      user.update_total_karma
+      user.total_karma.should eq user.karma_points.sum(:value)
+    end
+  end
 end

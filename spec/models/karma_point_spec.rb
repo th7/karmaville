@@ -23,4 +23,13 @@ describe KarmaPoint do
       }.to change(user, :total_karma).by(10)
     end
   end
+
+  describe '#update_user_total_karma' do
+    let(:user) { create(:user) }
+    
+    it 'calls update_total_karma on the associated user' do
+      user.should_receive(:update_total_karma)
+      create(:karma_point, :user => user, :value => 10)
+    end
+  end
 end
